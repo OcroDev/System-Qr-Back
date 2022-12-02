@@ -6,7 +6,6 @@ const userSchema = mongoose.Schema(
     u_username: { type: String, require: true },
     u_password: { type: String, require: true },
     u_admin: { type: Boolean, default: false },
-    u_normal: { type: Boolean, default: true },
     isDeleted: { type: Date, default: null },
   },
   {

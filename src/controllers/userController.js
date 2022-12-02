@@ -1,14 +1,14 @@
-import userServices from "../services/userServices";
+import userServices from "../services/userServices.js";
 
 const userController = {
   store: async (req, res) => {
-    const { u_fulltname, u_username, u_password, u_admin } = req.body;
+    const { u_fullname, u_username, u_password } = req.body;
 
-    if (!u_fulltname) {
+    if (!u_fullname) {
       return res.status(400).json({
         status: 400,
         isStored: false,
-        message: "Debes el campo de nombre completo no puede estar vacío",
+        message: 'El campo "nombre completo" no puede estar vacío',
       });
     }
 
@@ -19,19 +19,28 @@ const userController = {
         message: "el nombre de usuario y contraseña no puede estar vacío",
       });
     }
-    if (u_admin) {
-      u_normal;
+
+    const userFound = await userServices.findOne(u_username.toUpperCase());
+
+    if (userFound) {
+      return res.status(400).json({
+        status: 400,
+        isStored: false,
+        message: `El usuario '${u_username}' ya se encuentra registrado en la base de datos`,
+      });
     }
 
-    const newUser = { ...req.body };
+    const newUser = { ...req.body, u_username: u_username.toUpperCase() };
 
-    const collegeStored = await collegeServices.store(newCollege);
+    console.log(newUser);
+
+    const userStored = await userServices.store(newUser);
 
     return res.status(201).json({
       status: 201,
       isStored: true,
-      message: "El colegio fue agregado satisfactoriamente",
-      college: collegeStored,
+      message: "El usuario fue creado satisfactoriamente",
+      college: userStored,
     });
   },
 };

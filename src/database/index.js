@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import Colors from "colors";
 import * as dotenv from "dotenv";
 
+import PRODUCT from "../models/product.js";
+
 //ENVIROMENT CONSTANTS
 dotenv.config();
 const PORT = process.env.PORT || 4000;
@@ -17,6 +19,10 @@ export default function databaseConnetion(app) {
       app.listen(PORT, () => {
         console.log(Colors.dim(`SERVER PORT LISTENING ON PORT ${PORT}`));
       });
+
+      PRODUCT.updateMany({}, { $set: { p_location: "PAPELERIA" } }).then(
+        (res) => console.log(res)
+      );
     })
     .catch((error) => console.log(Colors.red(error)));
 }

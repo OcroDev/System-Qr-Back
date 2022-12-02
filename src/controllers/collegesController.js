@@ -12,7 +12,22 @@ const collegesController = {
       });
     }
 
-    const newCollege = { ...req.body };
+    const collegeFound = await userServices.findOne(
+      co_description.toUpperCase()
+    );
+
+    if (collegeFound) {
+      return res.status(400).json({
+        status: 400,
+        isStored: false,
+        message: `El colegio '${co_description}' ya se encuentra registrado en la base de datos`,
+      });
+    }
+
+    const newCollege = {
+      ...req.body,
+      co_description: co_description.toUpperCase(),
+    };
 
     const collegeStored = await collegeServices.store(newCollege);
 
