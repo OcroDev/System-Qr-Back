@@ -20,9 +20,9 @@ export default function databaseConnetion(app) {
         console.log(Colors.dim(`SERVER PORT LISTENING ON PORT ${PORT}`));
       });
 
-      PRODUCT.updateMany({}, { $set: { p_location: "PAPELERIA" } }).then(
-        (res) => console.log(res)
-      );
+      // PRODUCT.updateMany({}, { $set: { p_location: "PAPELERIA" } }).then(
+      //   (res) => console.log(res)
+      // );
     })
     .catch((error) => console.log(Colors.red(error)));
 }

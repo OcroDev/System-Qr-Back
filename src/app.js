@@ -4,6 +4,7 @@ import databaseConnetion from "./database/index.js";
 import collegesRouter from "./routes/collegeRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import productRouter from "./routes/productRoutes.js";
+import movementRouter from "./routes/movementRoutes.js";
 
 const app = express();
 
@@ -16,6 +17,9 @@ app.use(express.json());
 
 //products
 app.use("/qrstock/api/products", productRouter);
+
+//product movements
+app.use("/qrstock/api/products/movements", movementRouter);
 
 //colleges
 app.use("/qrstock/api/colleges", collegesRouter);
