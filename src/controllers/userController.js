@@ -1,14 +1,23 @@
 import userServices from "../services/userServices.js";
 
 const userController = {
-  store: async (req, res) => {
-    const { u_fullname, u_username, u_password } = req.body;
+  findAll: async (req, res) => {
+    const users = await userServices.findAll();
+    return res.status(200).json({
+      status: 200,
+      count: users.length,
+      users,
+    });
+  },
 
-    if (!u_fullname) {
+  store: async (req, res) => {
+    const { u_firstname, u_username, u_password } = req.body;
+
+    if (!u_firstname) {
       return res.status(400).json({
         status: 400,
         isStored: false,
-        message: 'El campo "nombre completo" no puede estar vacío',
+        message: 'El campo "nombre" no puede estar vacío',
       });
     }
 

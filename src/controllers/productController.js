@@ -1,14 +1,24 @@
 import productServices from "../services/productServices.js";
 
 const productController = {
-  store: async (req, res) => {
-    const { p_description, p_measurementUnit, p_location } = req.body;
+  findAll: async (req, res) => {
+    const allProducts = await productServices.findAll();
 
-    if (!p_description || !p_location) {
+    return res.status(200).json({
+      status: 200,
+      count: allProducts.length,
+      allProducts,
+    });
+  },
+
+  store: async (req, res) => {
+    const { p_description, p_unit, p_ubication } = req.body;
+
+    if (!p_description || !p_ubication) {
       return res.status(400).json({
         status: 400,
         isStored: false,
-        message: "El nombre y la ubicación del producto no puede estar vacía",
+        message: "El nombre y la ubicación del producto no pueden estar vacíos",
       });
     }
 
@@ -27,8 +37,8 @@ const productController = {
     const newProduct = {
       ...req.body,
       p_description: p_description.toUpperCase(),
-      p_measurementUnit: p_measurementUnit.toUpperCase(),
-      p_location: p_location.toUpperCase(),
+      p_unit: p_unit.toUpperCase(),
+      p_ubication: p_ubication.toUpperCase(),
     };
 
     console.log(newProduct);
