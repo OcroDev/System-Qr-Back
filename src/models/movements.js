@@ -1,7 +1,20 @@
 import sequelize from "../database/index.js";
 import { DataTypes } from "sequelize";
 
-const MOVEMENT = sequelize.define();
+const MOVEMENT = sequelize.define(
+  "movements",
+  {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    //todo move code
+    mov_note: { type: DataTypes.STRING, defaultValue: "" },
+    mov_quantity: { type: DataTypes.INTEGER, allowNull: false },
+    mov_type: { type: DataTypes.STRING, validate: { notEmpty: true } },
+    isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 export default MOVEMENT;
 

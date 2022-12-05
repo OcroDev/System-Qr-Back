@@ -14,7 +14,7 @@ const movementController = {
     const newMovement = { ...req.body };
 
     const movementStored = await movementServices.store(newMovement);
-    return;
+
     return res.status(200).json({
       status: 200,
       movementStored,

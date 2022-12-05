@@ -49,7 +49,7 @@ const productController = {
       status: 201,
       isStored: true,
       message: "El producto fue creado satisfactoriamente",
-      prodct: productStored,
+      product: productStored,
     });
   },
 };

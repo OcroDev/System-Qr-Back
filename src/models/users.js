@@ -6,7 +6,7 @@ const USER = sequelize.define(
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     u_firstname: { type: DataTypes.STRING, allowNull: false },
-    u_lastname: { type: DataTypes.STRING, allowNull: true },
+    u_lastname: { type: DataTypes.STRING, allowNull: true, defaultValue: "" },
     u_username: { type: DataTypes.STRING, unique: true, allowNull: false },
     u_password: { type: DataTypes.STRING, allowNull: false },
     u_admin: { type: DataTypes.BOOLEAN, defaultValue: false },

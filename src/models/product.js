@@ -1,5 +1,6 @@
 import sequelize from "../database/index.js";
 import { DataTypes } from "sequelize";
+import MOVEMENT from "./movements.js";
 
 const PRODUCT = sequelize.define(
   "products",
@@ -24,6 +25,16 @@ const PRODUCT = sequelize.define(
     timestamps: true,
   }
 );
+
+PRODUCT.hasMany(MOVEMENT, {
+  foreignKey: "p_id",
+  sourceKey: "id",
+});
+
+MOVEMENT.belongsTo(PRODUCT, {
+  foreignKey: "p_id",
+  targedId: "id",
+});
 
 export default PRODUCT;
 
