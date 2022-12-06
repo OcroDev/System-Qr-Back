@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../database/index.js";
+import OPERATION from "./operation.js";
 
 const OFFICE = sequelize.define(
   "office",
@@ -21,6 +22,15 @@ const OFFICE = sequelize.define(
     timestamps: true,
   }
 );
+
+OFFICE.hasMany(OPERATION, {
+  foreignKey: "of_out",
+  sourceKey: "id",
+});
+
+OPERATION.belongsTo(OFFICE, {
+  foreignKey: "of_out",
+});
 
 export default OFFICE;
 

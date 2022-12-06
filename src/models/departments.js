@@ -1,5 +1,6 @@
 import sequelize from "../database/index.js";
 import { DataTypes } from "sequelize";
+import OPERATION from "./operation.js";
 
 const DEPARTMENT = sequelize.define(
   "departments",
@@ -15,3 +16,14 @@ const DEPARTMENT = sequelize.define(
     timestamps: true,
   }
 );
+
+DEPARTMENT.hasMany(OPERATION, {
+  foreignKey: "dep_in",
+  sourceKey: "id",
+});
+
+OPERATION.belongsTo(DEPARTMENT, {
+  foreignKey: "dep_in",
+});
+
+export default DEPARTMENT;

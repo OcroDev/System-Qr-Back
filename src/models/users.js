@@ -1,5 +1,6 @@
 import sequelize from "../database/index.js";
 import { DataTypes } from "sequelize";
+import OPERATION from "./operation.js";
 
 const USER = sequelize.define(
   "users",
@@ -16,6 +17,15 @@ const USER = sequelize.define(
     timestamps: true,
   }
 );
+
+USER.hasMany(OPERATION, {
+  foreignKey: "u_make",
+  sourceKey: "id",
+});
+
+OPERATION.belongsTo(USER, {
+  foreignKey: "u_make",
+});
 
 export default USER;
 

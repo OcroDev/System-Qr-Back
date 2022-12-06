@@ -10,9 +10,14 @@ import oficceRouter from "./routes/officeRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import productRouter from "./routes/productRoutes.js";
 import movementRouter from "./routes/movementRoutes.js";
-// import "./models/office.js";
-// import "./models/users.js";
-// import "./models/product.js";
+
+import "./models/departments.js";
+import "./models/movements.js";
+import "./models/office.js";
+import "./models/operation.js";
+import "./models/operationType.js";
+import "./models/product.js";
+import "./models/users.js";
 
 //ENVIROMENT CONSTANTS
 dotenv.config();
@@ -21,7 +26,7 @@ const PORT = process.env.PORT || 5000;
 //database connection
 async function databaseConnetion() {
   try {
-    await sequelize.sync(/*{ alter: true }*/);
+    await sequelize.sync({ alter: true });
     console.log(
       Colors.rainbow("Connection has been established successfully.")
     );

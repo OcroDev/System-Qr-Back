@@ -8,7 +8,6 @@ const MOVEMENT = sequelize.define(
     //todo move code
     mov_note: { type: DataTypes.STRING, defaultValue: "" },
     mov_quantity: { type: DataTypes.INTEGER, allowNull: false },
-    mov_type: { type: DataTypes.STRING, validate: { notEmpty: true } },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
   },
   {

@@ -27,13 +27,13 @@ const PRODUCT = sequelize.define(
 );
 
 PRODUCT.hasMany(MOVEMENT, {
-  foreignKey: "p_id",
+  foreignKey: "product_id",
   sourceKey: "id",
 });
 
 MOVEMENT.belongsTo(PRODUCT, {
-  foreignKey: "p_id",
-  targedId: "id",
+  foreignKey: "product_id",
+  //targedId: "id",
 });
 
 export default PRODUCT;

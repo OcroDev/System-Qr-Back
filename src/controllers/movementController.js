@@ -2,12 +2,13 @@ import movementServices from "../services/movementServices.js";
 
 const movementController = {
   store: async (req, res) => {
-    const { p_id } = req.body;
+    const { product_id, operation_type_id, mov_quantity } = req.body;
 
-    if (p_id.length <= 0) {
+    if (!product_id || !operation_type_id || !mov_quantity) {
       return res.status(400).json({
         status: 400,
-        message: "El id del producto no puede estar vacio",
+        message:
+          "El id del producto, el tipo de operación, y la cantidad no pueden estar vacíos",
       });
     }
 
@@ -15,10 +16,17 @@ const movementController = {
 
     const movementStored = await movementServices.store(newMovement);
 
-    return res.status(200).json({
-      status: 200,
-      movementStored,
-    });
+    if (movementStored) {
+      return res.status(200).json({
+        status: 200,
+        movementStored,
+      });
+    } else {
+      return res.status(400).json({
+        status: 400,
+        message: "el id del producto no es válido",
+      });
+    }
   },
 };
 
