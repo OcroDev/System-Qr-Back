@@ -17,7 +17,12 @@ const PRODUCT = sequelize.define(
     p_ubication: {
       type: DataTypes.STRING,
       validate: { notEmpty: true, notNull: true },
+      allowNull: false, //System-Qr-Back/src/assets/product_qr_code
+    },
+    p_qrcode: {
+      type: DataTypes.STRING,
       allowNull: false,
+      validate: { notEmpty: true, notNull: true },
     },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
   },

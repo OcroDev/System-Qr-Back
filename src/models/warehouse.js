@@ -2,15 +2,15 @@ import { DataTypes } from "sequelize";
 import sequelize from "../database/index.js";
 import OPERATION from "./operation.js";
 
-const OFFICE = sequelize.define(
-  "office",
+const WAREHOUSE = sequelize.define(
+  "warehouse",
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    of_description: {
+    w_description: {
       type: DataTypes.STRING,
     },
     isdeleted: {
@@ -23,16 +23,16 @@ const OFFICE = sequelize.define(
   }
 );
 
-OFFICE.hasMany(OPERATION, {
-  foreignKey: "of_out",
+WAREHOUSE.hasMany(OPERATION, {
+  foreignKey: "warehouse_out",
   sourceKey: "id",
 });
 
-OPERATION.belongsTo(OFFICE, {
-  foreignKey: "of_out",
+OPERATION.belongsTo(WAREHOUSE, {
+  foreignKey: "warehouse_out",
 });
 
-export default OFFICE;
+export default WAREHOUSE;
 
 // // import mongoose from "mongoose";
 

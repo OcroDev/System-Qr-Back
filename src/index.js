@@ -6,14 +6,14 @@ import app from "./app.js";
 import Cors from "cors";
 import * as dotenv from "dotenv";
 import sequelize from "./database/index.js";
-import oficceRouter from "./routes/officeRoutes.js";
+import warehouseRouter from "./routes/warehouseRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import productRouter from "./routes/productRoutes.js";
 import movementRouter from "./routes/movementRoutes.js";
 
 import "./models/departments.js";
 import "./models/movements.js";
-import "./models/office.js";
+import "./models/warehouse.js";
 import "./models/operation.js";
 import "./models/operationType.js";
 import "./models/product.js";
@@ -51,7 +51,7 @@ app.use("/qrstock/api/products", productRouter);
 app.use("/qrstock/api/movements", movementRouter);
 
 //colleges
-app.use("/qrstock/api/offices", oficceRouter);
+app.use("/qrstock/api/warehouses", warehouseRouter);
 
 //users
 app.use("/qrstock/api/users", userRouter);
