@@ -22,7 +22,8 @@ const PRODUCT = sequelize.define(
     p_qrcode: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: { notEmpty: true, notNull: true },
+      //validate: { notEmpty: true, notNull: true },
+      defaultValue: "",
     },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
   },

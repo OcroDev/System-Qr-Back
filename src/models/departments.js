@@ -5,7 +5,7 @@ import OPERATION from "./operation.js";
 const DEPARTMENT = sequelize.define(
   "departments",
   {
-    id: { type: DataTypes.INTEGER, autoInrement: true, primaryKey: true },
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     d_name: {
       type: DataTypes.STRING,
       allowNull: false,

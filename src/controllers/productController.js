@@ -30,6 +30,7 @@ const productController = {
       return res.status(400).json({
         status: 400,
         isStored: false,
+        productFound: true,
         message: `El producto '${p_description}' ya se encuentra registrado en la base de datos`,
       });
     }
