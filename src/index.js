@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 5000;
 //database connection
 async function databaseConnetion() {
   try {
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ ater: true });
     console.log(
       Colors.rainbow("Connection has been established successfully.")
     );

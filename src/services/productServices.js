@@ -5,7 +5,7 @@ const productServices = {
     try {
       return PRODUCT.findAll({
         where: { isdeleted: false },
-        attributes: ["p_description", "p_stock", "p_stockmin"],
+        // attributes: ["p_description", "p_stock", "p_stockmin"],
       });
     } catch (error) {
       console.log(error);
