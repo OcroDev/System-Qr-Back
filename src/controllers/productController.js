@@ -22,7 +22,7 @@ const productController = {
       });
     }
 
-    const productFound = await productServices.findOne(
+    const productFound = await productServices.findOneByDescription(
       p_description.toUpperCase()
     );
 
@@ -51,6 +51,51 @@ const productController = {
       isStored: true,
       message: "El producto fue creado satisfactoriamente",
       product: productStored,
+    });
+  },
+  update: async (req, res) => {
+    const { id } = req.params;
+    const { p_description, p_unit, p_ubication } = req.body;
+    if (!p_description || !p_ubication) {
+      return res.status(400).json({
+        status: 400,
+        isStored: false,
+        message: "El nombre y la ubicación del producto no pueden estar vacíos",
+      });
+    }
+    const product = {
+      ...req.body,
+      p_description: p_description.toUpperCase(),
+      p_unit: p_unit.toUpperCase(),
+      p_ubication: p_ubication.toUpperCase(),
+    };
+    const productUpdate = await productServices.update(id, product);
+
+    return res.status(200).json({
+      status: 201,
+      isUpdated: true,
+      message: "El producto fue actualizado",
+      product: productUpdate,
+    });
+  },
+  delete: async (req, res) => {
+    const { id } = req.params;
+
+    if (!req.params.id) {
+      return res.status(400).json({
+        status: 400,
+        isDeleted: false,
+        message: "El id no puede estar vacío",
+      });
+    }
+
+    const productDeleted = await productServices.delete(id);
+
+    return res.status(200).json({
+      status: 200,
+      isDeleted: true,
+      product: productDeleted,
+      message: "El producto fue eliminado",
     });
   },
 };

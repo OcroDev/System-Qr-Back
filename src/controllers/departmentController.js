@@ -32,7 +32,7 @@ const departmentController = {
         status: 400,
         isStored: false,
         departmentFound: true,
-        message: `El usuario '${d_name}' ya se encuentra registrado en la base de datos`,
+        message: `El departamento '${d_name}' ya se encuentra registrado en la base de datos`,
       });
     }
 

@@ -11,9 +11,24 @@ const productServices = {
       console.log(error);
     }
   },
-  findOne: (description) => {
+  findOneByDescription: (description) => {
     try {
       return PRODUCT.findOne({ where: { p_description: description } });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  update: (id, product) => {
+    try {
+      return PRODUCT.update(
+        {
+          p_description: product.p_description,
+          p_unit: product.p_unit,
+          p_minstock: product.p_minstock,
+          p_ubication: product.p_ubication,
+        },
+        { where: { id: id } }
+      );
     } catch (error) {
       console.log(error);
     }
@@ -22,6 +37,13 @@ const productServices = {
     try {
       const product = PRODUCT.create(newProduct);
       return product;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  delete: (productId) => {
+    try {
+      return PRODUCT.update({ isdeleted: true }, { where: { id: productId } });
     } catch (error) {
       console.log(error);
     }
