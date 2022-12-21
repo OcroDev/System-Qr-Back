@@ -9,7 +9,9 @@ productRouter.post("/", productController.store);
 productRouter.get("/", productController.findAll);
 //DELETE .../qrstock/api/product ... DELETE ONE
 productRouter.delete("/:id", productController.delete);
-//PUT .../qrstock/api/product ... FIND ONE
-productRouter.put("/:id", productController.update);
+//PUT .../qrstock/api/product ... update ONE
+productRouter.put("/update/:id", productController.update);
+//GET .../qrstock/api/product ... FIND ONE
+productRouter.get("/update/:id", productController.findOneById);
 
 export default productRouter;

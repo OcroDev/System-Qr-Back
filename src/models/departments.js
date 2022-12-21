@@ -11,6 +11,7 @@ const DEPARTMENT = sequelize.define(
       allowNull: false,
       validate: { notEmpty: true },
     },
+    isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
   },
   {
     timestamps: true,

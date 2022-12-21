@@ -18,6 +18,13 @@ const productServices = {
       console.log(error);
     }
   },
+  findOnebyId: (productId) => {
+    try {
+      return PRODUCT.findByPk(productId);
+    } catch (error) {
+      console.log(error);
+    }
+  },
   update: (id, product) => {
     try {
       return PRODUCT.update(

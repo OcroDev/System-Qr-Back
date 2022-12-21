@@ -53,6 +53,29 @@ const productController = {
       product: productStored,
     });
   },
+  findOneById: async (req, res) => {
+    const { id } = req.params;
+
+    console.log(id);
+    if (!req.params.id) {
+      res.status(400).json({
+        status: 400,
+        message: "no se encuentra el id en los parametros",
+      });
+    }
+
+    const productFind = await productServices.findOnebyId(id);
+
+    if (!productFind) {
+      return res
+        .status(404)
+        .json({ status: 404, message: "product not found" });
+    }
+    return res.status(200).json({
+      status: 201,
+      product: productFind,
+    });
+  },
   update: async (req, res) => {
     const { id } = req.params;
     const { p_description, p_unit, p_ubication } = req.body;
@@ -63,12 +86,26 @@ const productController = {
         message: "El nombre y la ubicación del producto no pueden estar vacíos",
       });
     }
+
     const product = {
       ...req.body,
       p_description: p_description.toUpperCase(),
       p_unit: p_unit.toUpperCase(),
       p_ubication: p_ubication.toUpperCase(),
     };
+
+    const productFound = await productServices.findOneByDescription(
+      p_description.toUpperCase()
+    );
+
+    if (productFound) {
+      return res.status(400).json({
+        status: 400,
+        isStored: false,
+        productFound: true,
+        message: `El producto '${p_description}' ya se encuentra registrado en la base de datos`,
+      });
+    }
     const productUpdate = await productServices.update(id, product);
 
     return res.status(200).json({

@@ -3,11 +3,11 @@ import Colors from "colors";
 
 const departmentController = {
   findAll: async (req, res) => {
-    const users = await departmentServices.findAll();
+    const allDepartments = await departmentServices.findAll();
     return res.status(200).json({
       status: 200,
-      count: users.length,
-      users,
+      count: allDepartments.length,
+      allDepartments,
     });
   },
 
