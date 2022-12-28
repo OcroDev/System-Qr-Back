@@ -52,7 +52,7 @@ app.use("/qrstock/api/products", productRouter);
 //product movements
 app.use("/qrstock/api/movements", movementRouter);
 
-//colleges
+//warehouse
 app.use("/qrstock/api/warehouses", warehouseRouter);
 
 //users

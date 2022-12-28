@@ -56,7 +56,6 @@ const productController = {
   findOneById: async (req, res) => {
     const { id } = req.params;
 
-    console.log(id);
     if (!req.params.id) {
       res.status(400).json({
         status: 400,

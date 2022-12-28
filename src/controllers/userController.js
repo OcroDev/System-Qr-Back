@@ -6,12 +6,31 @@ const userController = {
     return res.status(200).json({
       status: 200,
       count: users.length,
-      users,
+      allUsers: users,
     });
   },
+  findOneById: async (req, res) => {
+    const { id } = req.params;
 
+    if (!req.params.id) {
+      res.status(400).json({
+        status: 400,
+        message: "no se encuentra el id en los parametros",
+      });
+    }
+
+    const userFind = await userServices.findOnebyId(id);
+
+    if (!userFind) {
+      return res.status(404).json({ status: 404, message: "user not found" });
+    }
+    return res.status(200).json({
+      status: 201,
+      user: userFind,
+    });
+  },
   store: async (req, res) => {
-    const { u_firstname, u_username, u_password } = req.body;
+    const { u_firstname, u_username, u_password, u_lastname } = req.body;
 
     if (!u_firstname) {
       return res.status(400).json({
@@ -29,17 +48,25 @@ const userController = {
       });
     }
 
-    const userFound = await userServices.findOne(u_username.toUpperCase());
+    const userFound = await userServices.findOneByName(
+      u_username.toUpperCase()
+    );
 
     if (userFound) {
       return res.status(400).json({
         status: 400,
         isStored: false,
+        userFound: true,
         message: `El usuario '${u_username}' ya se encuentra registrado en la base de datos`,
       });
     }
 
-    const newUser = { ...req.body, u_username: u_username.toUpperCase() };
+    const newUser = {
+      ...req.body,
+      u_username: u_username.toUpperCase(),
+      u_firstname: u_firstname.toUpperCase(),
+      u_lastname: u_lastname.toUpperCase(),
+    };
 
     console.log(newUser);
 
@@ -49,7 +76,75 @@ const userController = {
       status: 201,
       isStored: true,
       message: "El usuario fue creado satisfactoriamente",
-      college: userStored,
+      user: userStored,
+    });
+  },
+  update: async (req, res) => {
+    const { id } = req.params;
+    const { u_firstname, u_password, u_username, u_lastname } = req.body;
+    if (!u_firstname) {
+      return res.status(400).json({
+        status: 400,
+        isStored: false,
+        message: 'El campo "nombre" no puede estar vacío',
+      });
+    }
+
+    if (!u_username || !u_password) {
+      return res.status(400).json({
+        status: 400,
+        isStored: false,
+        message: "el nombre de usuario y contraseña no pueden estar vacío",
+      });
+    }
+
+    const user = {
+      ...req.body,
+      u_username: u_username.toUpperCase(),
+      u_firstname: u_firstname.toUpperCase(),
+      u_lastname: u_lastname.toUpperCase(),
+    };
+
+    const userFound = await userServices.findOneByName(
+      u_username.toUpperCase()
+    );
+
+    if (userFound) {
+      return res.status(400).json({
+        status: 400,
+        isStored: false,
+        productFound: true,
+        message: `El usuario '${u_username}' ya se encuentra registrado en la base de datos`,
+      });
+    }
+    const userUpdate = await userServices.update(id, user);
+
+    return res.status(200).json({
+      status: 201,
+      isUpdated: true,
+      message: "El usuario fue actualizado",
+      user: userUpdate,
+    });
+  },
+
+  delete: async (req, res) => {
+    const { id } = req.params;
+
+    if (!req.params.id) {
+      return res.status(400).json({
+        status: 400,
+        isDeleted: false,
+        message: "El id no puede estar vacío",
+      });
+    }
+
+    const userDeleted = await userServices.delete(id);
+
+    return res.status(200).json({
+      status: 200,
+      isDeleted: true,
+      user: userDeleted,
+      message: "El usuario fue eliminado",
     });
   },
 };
