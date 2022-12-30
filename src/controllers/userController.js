@@ -29,6 +29,38 @@ const userController = {
       user: userFind,
     });
   },
+  loginCheck: async (req, res) => {
+    const { u_username, u_password } = req.body;
+
+    if (!u_username || !u_password)
+      return console.log("El usuario y contraseña no deben estar vacíos");
+
+    const userFound = await userServices.findOneByName(
+      u_username.toUpperCase()
+    );
+
+    if (userFound) {
+      if (userFound.u_password === u_password) {
+        return res.status(200).json({
+          status: 200,
+          message: "Iniciando Sesion",
+          userFound,
+        });
+      } else {
+        return res.status(400).json({
+          status: 400,
+          message: "La contraseña es incorrecta",
+          userNotFound: true,
+        });
+      }
+    } else {
+      return res.status(404).json({
+        status: 404,
+        message: `el usuario ${u_username} no se encuentra registrado`,
+        userNotFound: true,
+      });
+    }
+  },
   store: async (req, res) => {
     const { u_firstname, u_username, u_password, u_lastname } = req.body;
 

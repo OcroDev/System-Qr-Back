@@ -15,7 +15,10 @@ userRouter.delete("/:id", userController.delete);
 //PUT .../qrstock/api/user ... update ONE
 userRouter.put("/update/:id", userController.update);
 
-//GET .../qrstock/api/user ... FIND ONE
+//GET .../qrstock/api/user ... FIND ONE by id
 userRouter.get("/update/:id", userController.findOneById);
+
+//GET ... /qrstock/api/user ... FIND ONE BY NAME "login"
+userRouter.post("/login", userController.loginCheck);
 
 export default userRouter;

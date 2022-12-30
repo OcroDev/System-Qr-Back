@@ -11,7 +11,7 @@ const userServices = {
   },
   findOneByName: (username) => {
     try {
-      return (username = USER.findOne({ where: { u_username: username } }));
+      return USER.findOne({ where: { u_username: username } });
     } catch (error) {
       console.log(error);
     }
