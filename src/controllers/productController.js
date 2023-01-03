@@ -134,6 +134,30 @@ const productController = {
       message: "El producto fue eliminado",
     });
   },
+  updateStock: async (req, res) => {
+    let { id, p_stock, operation_type } = req.body;
+
+    if (operation_type === 2) {
+      p_stock *= -1;
+    }
+    const productFind = await productServices.findOnebyId(id);
+
+    if (!productFind) {
+      return res.status(404).json({
+        status: 404,
+        message: "No se pudo encontrar el producto",
+      });
+    }
+    let stock = parseInt(productFind.p_stock) + parseInt(p_stock);
+
+    const productUpdate = await productServices.updateStock(id, stock);
+
+    return res.status(200).json({
+      status: 200,
+      message: "stock del producto actualizado",
+      product: productUpdate,
+    });
+  },
 };
 
 export default productController;

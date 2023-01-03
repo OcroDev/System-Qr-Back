@@ -13,5 +13,7 @@ productRouter.delete("/:id", productController.delete);
 productRouter.put("/update/:id", productController.update);
 //GET .../qrstock/api/product ... FIND ONE
 productRouter.get("/update/:id", productController.findOneById);
+//PUT .../qrstock/api/product
+productRouter.put("/update-stock", productController.updateStock);
 
 export default productRouter;

@@ -11,6 +11,7 @@ import userRouter from "./routes/userRoutes.js";
 import departmentRouter from "./routes/departmentRoutes.js";
 import productRouter from "./routes/productRoutes.js";
 import movementRouter from "./routes/movementRoutes.js";
+import operationRouter from "./routes/operationRoutes.js";
 
 import "./models/departments.js";
 import "./models/movements.js";
@@ -60,3 +61,6 @@ app.use("/qrstock/api/users", userRouter);
 
 //departments
 app.use("/qrstock/api/departments", departmentRouter);
+
+//operations
+app.use("/qrstock/api/operations", operationRouter);

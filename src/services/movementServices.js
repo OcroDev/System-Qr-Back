@@ -1,6 +1,10 @@
 import MOVEMENT from "../models/movements.js";
 
 const movementServices = {
+  countByType: (movementType) => {
+    try {
+    } catch (error) {}
+  },
   store: (newMovement) => {
     try {
       const movement = MOVEMENT.create(newMovement);

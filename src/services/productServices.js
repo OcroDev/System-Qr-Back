@@ -5,7 +5,10 @@ const productServices = {
     try {
       return PRODUCT.findAll({
         where: { isdeleted: false },
-        // attributes: ["p_description", "p_stock", "p_stockmin"],
+        order: [
+          ["p_ubication", "DESC"],
+          ["id", "ASC"],
+        ],
       });
     } catch (error) {
       console.log(error);
@@ -51,6 +54,13 @@ const productServices = {
   delete: (productId) => {
     try {
       return PRODUCT.update({ isdeleted: true }, { where: { id: productId } });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  updateStock: (productId, stock) => {
+    try {
+      return PRODUCT.update({ p_stock: stock }, { where: { id: productId } });
     } catch (error) {
       console.log(error);
     }

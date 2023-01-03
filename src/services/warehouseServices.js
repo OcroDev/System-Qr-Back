@@ -41,7 +41,6 @@ const warehouseServices = {
     }
   },
   store: (newWarehouse) => {
-    console.log(Colors.red(newWarehouse));
     const { w_description } = newWarehouse;
 
     try {
