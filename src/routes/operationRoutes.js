@@ -15,4 +15,10 @@ operationRouter.get("/last-id", operationController.findLastId);
 //POST  /qrstock/api/operations / CREATE
 operationRouter.post("/", operationController.store);
 
+//GET IN OPERATION
+operationRouter.get("/in", operationController.findInOperations);
+
+//GET out OPERATION
+operationRouter.get("/out", operationController.findOutOperations);
+
 export default operationRouter;

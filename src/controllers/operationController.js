@@ -3,11 +3,35 @@ import operationServices from "../services/operationServices.js";
 const operationController = {
   findLastId: async (req, res) => {
     const operations = await operationServices.findLastId();
-    let operationId = operations[0].dataValues.id;
+    console.log("operations:", operations.length);
+
+    let operationId;
+
+    if (operations.length === 0) {
+      operationId = 0;
+    } else {
+      operationId = operations[0].dataValues.id;
+    }
 
     return res.status(200).json({
       status: 200,
       operationId,
+    });
+  },
+  findInOperations: async (req, res) => {
+    const operationsIn = await operationServices.findInOperations();
+
+    return res.status(200).json({
+      count: operationsIn.length,
+      operations: operationsIn,
+    });
+  },
+  findOutOperations: async (req, res) => {
+    const operationsOut = await operationServices.findOutOperations();
+
+    return res.status(200).json({
+      count: operationsOut.length,
+      operations: operationsOut,
     });
   },
 
@@ -34,14 +58,15 @@ const operationController = {
     });
   },
   store: async (req, res) => {
-    const { warehouse_out, u_make, dep_in, operation_type_id } = req.body;
+    const { warehouse_out, u_make, dep_in, operation_type_id, warehouse_in } =
+      req.body;
 
     console.log("whareouse: ", warehouse_out);
     console.log("user make: ", u_make);
     console.log("dep in: ", dep_in);
     console.log("operation type: ", operation_type_id);
 
-    if (!warehouse_out || !u_make || !dep_in || !operation_type_id) {
+    if (!u_make || !operation_type_id) {
       res.status(400).json({
         status: 400,
         message: "faltan una o varias claves foraneas",
@@ -53,6 +78,7 @@ const operationController = {
       u_make,
       dep_in,
       operation_type_id,
+      warehouse_in,
     };
 
     console.log("New operation:", newOperation);

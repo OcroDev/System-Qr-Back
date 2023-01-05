@@ -93,18 +93,18 @@ const productController = {
       p_ubication: p_ubication.toUpperCase(),
     };
 
-    const productFound = await productServices.findOneByDescription(
-      p_description.toUpperCase()
-    );
+    // const productFound = await productServices.findOneByDescription(
+    //   p_description.toUpperCase()
+    // );
 
-    if (productFound) {
-      return res.status(400).json({
-        status: 400,
-        isStored: false,
-        productFound: true,
-        message: `El producto '${p_description}' ya se encuentra registrado en la base de datos`,
-      });
-    }
+    // if (productFound) {
+    //   return res.status(400).json({
+    //     status: 400,
+    //     isStored: false,
+    //     productFound: true,
+    //     message: `El producto '${p_description}' ya se encuentra registrado en la base de datos`,
+    //   });
+    // }
     const productUpdate = await productServices.update(id, product);
 
     return res.status(200).json({

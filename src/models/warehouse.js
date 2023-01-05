@@ -32,6 +32,15 @@ OPERATION.belongsTo(WAREHOUSE, {
   foreignKey: "warehouse_out",
 });
 
+WAREHOUSE.hasMany(OPERATION, {
+  foreignKey: "warehouse_in",
+  sourceKey: "id",
+});
+
+OPERATION.belongsTo(WAREHOUSE, {
+  foreignKey: "warehouse_in",
+});
+
 export default WAREHOUSE;
 
 // // import mongoose from "mongoose";
