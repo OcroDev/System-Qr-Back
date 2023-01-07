@@ -9,9 +9,13 @@ const MOVEMENT = sequelize.define(
     mov_note: { type: DataTypes.STRING, defaultValue: "" },
     mov_quantity: { type: DataTypes.INTEGER, allowNull: false },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
+    createdat: {
+      type: DataTypes.DATE,
+      defaultValue: new Date().toLocaleDateString("es-VE"),
+    },
   },
   {
-    timestamps: true,
+    timestamps: false,
   }
 );
 

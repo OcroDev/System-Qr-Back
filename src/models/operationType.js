@@ -15,6 +15,10 @@ const OPERATION_TYPE = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    createdat: {
+      type: DataTypes.DATE,
+      defaultValue: new Date().toLocaleDateString("es-VE"),
+    },
   },
   {
     timestamps: false,

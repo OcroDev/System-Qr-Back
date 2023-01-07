@@ -12,9 +12,13 @@ const USER = sequelize.define(
     u_password: { type: DataTypes.STRING, allowNull: false },
     u_admin: { type: DataTypes.BOOLEAN, defaultValue: false },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
+    createdat: {
+      type: DataTypes.DATE,
+      defaultValue: new Date().toLocaleDateString("es-VE"),
+    },
   },
   {
-    timestamps: true,
+    timestamps: false,
   }
 );
 

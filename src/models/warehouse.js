@@ -17,9 +17,13 @@ const WAREHOUSE = sequelize.define(
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    createdat: {
+      type: DataTypes.DATE,
+      defaultValue: new Date().toLocaleDateString("es-VE"),
+    },
   },
   {
-    timestamps: true,
+    timestamps: false,
   }
 );
 

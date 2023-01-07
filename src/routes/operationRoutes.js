@@ -20,5 +20,11 @@ operationRouter.get("/in", operationController.findInOperations);
 
 //GET out OPERATION
 operationRouter.get("/out", operationController.findOutOperations);
+//post out OPERATION
+operationRouter.post("/out-id", operationController.findOutOperationsById);
+//post out OPERATION
+operationRouter.post("/in-id", operationController.findInOperationsById);
+// put delete OEPRATION
+operationRouter.put("/delete", operationController.deleteOperation);
 
 export default operationRouter;

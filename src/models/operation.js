@@ -11,9 +11,13 @@ const OPERATION = sequelize.define(
       defaultValue: "LIC. GABRIELA CEDOLIN",
     },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
+    createdat: {
+      type: DataTypes.DATE,
+      defaultValue: new Date().toLocaleDateString("es-VE"),
+    },
   },
   {
-    timestamps: true,
+    timestamps: false,
   }
 );
 

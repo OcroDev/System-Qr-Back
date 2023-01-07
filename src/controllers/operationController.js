@@ -34,7 +34,43 @@ const operationController = {
       operations: operationsOut,
     });
   },
+  findOutOperationsById: async (req, res) => {
+    const { id } = req.body;
 
+    const operationsOut = await operationServices.findOutOperationsById(id);
+
+    return res.status(200).json({
+      count: operationsOut.length,
+      operation: operationsOut,
+    });
+  },
+  findInOperationsById: async (req, res) => {
+    const { id } = req.body;
+
+    const operationsOut = await operationServices.findInOperationsById(id);
+
+    return res.status(200).json({
+      count: operationsOut.length,
+      operation: operationsOut,
+    });
+  },
+  deleteOperation: async (req, res) => {
+    const { id } = req.body;
+
+    const operationDeleted = await operationServices.deleteOperation(id);
+
+    if (!operationDeleted) {
+      return res.status(500).json({
+        status: 500,
+        message: "Error al eliminar la operacion en el servidor",
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      deleted: true,
+      message: "Operacion eliminada",
+    });
+  },
   countByType: async (req, res) => {
     const { operation_type_id } = req.body;
 
