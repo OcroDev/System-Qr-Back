@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../database/index.js";
 import OPERATION from "./operation.js";
+import ORDER from "./orders.js";
 
 const WAREHOUSE = sequelize.define(
   "warehouse",
@@ -18,7 +19,7 @@ const WAREHOUSE = sequelize.define(
       defaultValue: false,
     },
     createdat: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       defaultValue: new Date().toLocaleDateString("es-VE"),
     },
   },
@@ -43,6 +44,15 @@ WAREHOUSE.hasMany(OPERATION, {
 
 OPERATION.belongsTo(WAREHOUSE, {
   foreignKey: "warehouse_in",
+});
+
+WAREHOUSE.hasMany(ORDER, {
+  foreignKey: "warehouse_id",
+  sourceKey: "id",
+});
+
+ORDER.belongsTo(WAREHOUSE, {
+  foreignKey: "warehouse_id",
 });
 
 export default WAREHOUSE;

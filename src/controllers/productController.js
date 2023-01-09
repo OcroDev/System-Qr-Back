@@ -53,6 +53,28 @@ const productController = {
       product: productStored,
     });
   },
+  findByID: async (req, res) => {
+    const { id } = req.body;
+
+    if (!req.body.id) {
+      res.status(400).json({
+        status: 400,
+        message: "no se encuentra el id en los parametros",
+      });
+    }
+
+    const productFind = await productServices.findOnebyId(id);
+
+    if (!productFind) {
+      return res
+        .status(404)
+        .json({ status: 404, message: "product not found" });
+    }
+    return res.status(200).json({
+      status: 200,
+      product: productFind,
+    });
+  },
   findOneById: async (req, res) => {
     const { id } = req.params;
 
@@ -75,6 +97,21 @@ const productController = {
       product: productFind,
     });
   },
+  findByMinStock: async (req, res) => {
+    const minstockProducts = await productServices.findByMinStock();
+
+    return res.status(200).json({
+      status: 200,
+      products: minstockProducts,
+    });
+  },
+  getMustOut: async (req, res) => {
+    const productsMustOut = await productServices.getMustOut();
+    return res.status(200).json({
+      status: 200,
+      products: productsMustOut,
+    });
+  },
   update: async (req, res) => {
     const { id } = req.params;
     const { p_description, p_unit, p_ubication } = req.body;
@@ -93,18 +130,6 @@ const productController = {
       p_ubication: p_ubication.toUpperCase(),
     };
 
-    // const productFound = await productServices.findOneByDescription(
-    //   p_description.toUpperCase()
-    // );
-
-    // if (productFound) {
-    //   return res.status(400).json({
-    //     status: 400,
-    //     isStored: false,
-    //     productFound: true,
-    //     message: `El producto '${p_description}' ya se encuentra registrado en la base de datos`,
-    //   });
-    // }
     const productUpdate = await productServices.update(id, product);
 
     return res.status(200).json({

@@ -5,12 +5,11 @@ const MOVEMENT = sequelize.define(
   "movements",
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    //todo move code
     mov_note: { type: DataTypes.STRING, defaultValue: "" },
     mov_quantity: { type: DataTypes.INTEGER, allowNull: false },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
     createdat: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       defaultValue: new Date().toLocaleDateString("es-VE"),
     },
   },

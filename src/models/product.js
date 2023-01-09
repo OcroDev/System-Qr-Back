@@ -1,6 +1,7 @@
 import sequelize from "../database/index.js";
 import { DataTypes } from "sequelize";
 import MOVEMENT from "./movements.js";
+import ORDER_MOVEMENT from "./order_movements.js";
 
 const PRODUCT = sequelize.define(
   "products",
@@ -27,7 +28,7 @@ const PRODUCT = sequelize.define(
     },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
     createdat: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       defaultValue: new Date().toLocaleDateString("es-VE"),
     },
   },
@@ -44,6 +45,15 @@ PRODUCT.hasMany(MOVEMENT, {
 MOVEMENT.belongsTo(PRODUCT, {
   foreignKey: "product_id",
   //targedId: "id",
+});
+
+PRODUCT.hasMany(ORDER_MOVEMENT, {
+  foreignKey: "product_id",
+  sourceKey: "id",
+});
+
+ORDER_MOVEMENT.belongsTo(PRODUCT, {
+  foreignKey: "product_id",
 });
 
 export default PRODUCT;

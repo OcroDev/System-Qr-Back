@@ -1,6 +1,7 @@
 import sequelize from "../database/index.js";
 import { DataTypes } from "sequelize";
 import OPERATION from "./operation.js";
+import ORDER from "./orders.js";
 
 const USER = sequelize.define(
   "users",
@@ -13,7 +14,7 @@ const USER = sequelize.define(
     u_admin: { type: DataTypes.BOOLEAN, defaultValue: false },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
     createdat: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       defaultValue: new Date().toLocaleDateString("es-VE"),
     },
   },
@@ -29,6 +30,15 @@ USER.hasMany(OPERATION, {
 
 OPERATION.belongsTo(USER, {
   foreignKey: "u_make",
+});
+
+USER.hasMany(ORDER, {
+  foreignKey: "user_id",
+  sourceKey: "id",
+});
+
+ORDER.belongsTo(USER, {
+  foreignKey: "user_id",
 });
 
 export default USER;

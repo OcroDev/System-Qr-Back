@@ -1,15 +1,11 @@
 import sequelize from "../database/index.js";
 import DataTypes from "sequelize";
-import MOVEMENT from "./movements.js";
+import ORDER_MOVEMENT from "./order_movements.js";
 
-const OPERATION = sequelize.define(
-  "operations",
+const ORDER = sequelize.define(
+  "order",
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    operation_auth: {
-      type: DataTypes.STRING,
-      defaultValue: "LIC. GABRIELA CEDOLIN",
-    },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
     createdat: {
       type: DataTypes.STRING,
@@ -21,13 +17,13 @@ const OPERATION = sequelize.define(
   }
 );
 
-OPERATION.hasMany(MOVEMENT, {
-  foreignKey: "operation_cod",
+ORDER.hasMany(ORDER_MOVEMENT, {
+  foreignKey: "order_cod",
   sourceKey: "id",
 });
 
-MOVEMENT.belongsTo(OPERATION, {
-  foreignKey: "operation_cod",
+ORDER_MOVEMENT.belongsTo(ORDER, {
+  foreignKey: "order_cod",
 });
 
-export default OPERATION;
+export default ORDER;

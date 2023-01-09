@@ -15,5 +15,12 @@ productRouter.put("/update/:id", productController.update);
 productRouter.get("/update/:id", productController.findOneById);
 //PUT .../qrstock/api/product
 productRouter.put("/update-stock", productController.updateStock);
+//Get ... MIN STOCK
+productRouter.get("/minstock", productController.findByMinStock);
+//Get ... MUST OUT
+productRouter.get("/mustout", productController.getMustOut);
+
+//find one by id
+productRouter.put("/id", productController.findByID);
 
 export default productRouter;

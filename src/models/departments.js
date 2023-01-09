@@ -1,6 +1,7 @@
 import sequelize from "../database/index.js";
 import { DataTypes } from "sequelize";
 import OPERATION from "./operation.js";
+import ORDER from "./orders.js";
 
 const DEPARTMENT = sequelize.define(
   "departments",
@@ -13,7 +14,7 @@ const DEPARTMENT = sequelize.define(
     },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
     createdat: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       defaultValue: new Date().toLocaleDateString("es-VE"),
     },
   },
@@ -29,6 +30,15 @@ DEPARTMENT.hasMany(OPERATION, {
 
 OPERATION.belongsTo(DEPARTMENT, {
   foreignKey: "dep_in",
+});
+
+DEPARTMENT.hasMany(ORDER, {
+  foreignKey: "department_id",
+  sourceKey: "id",
+});
+
+ORDER.belongsTo(DEPARTMENT, {
+  foreignKey: "department_id",
 });
 
 export default DEPARTMENT;

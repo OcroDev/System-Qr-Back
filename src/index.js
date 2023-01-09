@@ -12,6 +12,8 @@ import departmentRouter from "./routes/departmentRoutes.js";
 import productRouter from "./routes/productRoutes.js";
 import movementRouter from "./routes/movementRoutes.js";
 import operationRouter from "./routes/operationRoutes.js";
+import orderRouter from "./routes/orderRoutes.js";
+import orderMovementRouter from "./routes/orderMovementsRoutes.js";
 
 import "./models/departments.js";
 import "./models/movements.js";
@@ -20,6 +22,8 @@ import "./models/operation.js";
 import "./models/operationType.js";
 import "./models/product.js";
 import "./models/users.js";
+import "./models/order_movements.js";
+import "./models/orders.js";
 
 const app = express();
 app.use(Cors());
@@ -64,3 +68,9 @@ app.use("/qrstock/api/departments", departmentRouter);
 
 //operations
 app.use("/qrstock/api/operations", operationRouter);
+
+//orders
+app.use("/qrstock/api/orders", orderRouter);
+
+//orders
+app.use("/qrstock/api/ordermovements", orderMovementRouter);
