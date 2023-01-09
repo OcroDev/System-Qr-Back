@@ -28,6 +28,29 @@ const orderController = {
       total,
     });
   },
+  findOrderReportById: async (req, res) => {
+    const { id } = req.body;
+    if (!id) {
+      return res.status(400).json({
+        status: 400,
+        message: "El id del pedido no puede estar vacío",
+      });
+    }
+
+    const orderFind = await orderServices.findOrderReportById(id);
+
+    if (!orderFind) {
+      return res.status(404).json({
+        status: 404,
+        message: "el pedido no se encuentra en la base de datos",
+      });
+    }
+
+    return res.status(200).json({
+      status: 200,
+      orderFind,
+    });
+  },
   store: async (req, res) => {
     const { warehouse_id, user_id, department_id } = req.body;
 

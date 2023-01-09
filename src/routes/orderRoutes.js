@@ -16,4 +16,6 @@ orderRouter.post("/", orderController.store);
 //delete new order
 orderRouter.put("/delete", orderController.delete);
 
+orderRouter.post("/report", orderController.findOrderReportById);
+
 export default orderRouter;
