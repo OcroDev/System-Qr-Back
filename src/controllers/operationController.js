@@ -3,7 +3,6 @@ import operationServices from "../services/operationServices.js";
 const operationController = {
   findLastId: async (req, res) => {
     const operations = await operationServices.findLastId();
-    console.log("operations:", operations.length);
 
     let operationId;
 
@@ -85,8 +84,6 @@ const operationController = {
       operation_type_id
     );
 
-    console.log(totalOperations);
-
     return res.status(200).json({
       status: 200,
       message: "operaciones encontradas",
@@ -96,11 +93,6 @@ const operationController = {
   store: async (req, res) => {
     const { warehouse_out, u_make, dep_in, operation_type_id, warehouse_in } =
       req.body;
-
-    console.log("whareouse: ", warehouse_out);
-    console.log("user make: ", u_make);
-    console.log("dep in: ", dep_in);
-    console.log("operation type: ", operation_type_id);
 
     if (!u_make || !operation_type_id) {
       res.status(400).json({
@@ -117,7 +109,6 @@ const operationController = {
       warehouse_in,
     };
 
-    console.log("New operation:", newOperation);
     const operationStored = await operationServices.store(newOperation);
 
     if (!operationStored) {

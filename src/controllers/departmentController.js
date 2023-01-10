@@ -43,7 +43,6 @@ const departmentController = {
         message: 'El campo "nombre" no puede estar vacío',
       });
     }
-    console.log(Colors.bgCyan(d_name));
 
     const departmentFound = await departmentServices.findOneByName(
       d_name.toUpperCase()
@@ -59,8 +58,6 @@ const departmentController = {
     }
 
     const newDepartment = { ...req.body, d_name: d_name.toUpperCase() };
-
-    console.log(newDepartment);
 
     const departmentStored = await departmentServices.store(newDepartment);
 

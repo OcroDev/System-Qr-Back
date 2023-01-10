@@ -5,25 +5,19 @@ const departmentServices = {
     try {
       const allDepartment = DEPARTMENT.findAll({ where: { isdeleted: false } });
       return allDepartment;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   },
   findOneByName: (department_name) => {
     try {
       return DEPARTMENT.findOne({
         where: { d_name: department_name },
       });
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   },
   findOnebyId: (departmentId) => {
     try {
       return DEPARTMENT.findByPk(departmentId);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   },
   update: (id, department) => {
     try {
@@ -33,17 +27,13 @@ const departmentServices = {
         },
         { where: { id: id } }
       );
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   },
   store: (newDepartment) => {
     try {
       const department = DEPARTMENT.create(newDepartment);
       return department;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   },
   delete: (departmentId) => {
     try {
@@ -51,9 +41,7 @@ const departmentServices = {
         { isdeleted: true },
         { where: { id: departmentId } }
       );
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   },
 };
 

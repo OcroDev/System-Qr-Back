@@ -33,7 +33,9 @@ const userController = {
     const { u_username, u_password } = req.body;
 
     if (!u_username || !u_password)
-      return console.log("El usuario y contraseña no deben estar vacíos");
+      return res(400).json({
+        message: "El usuario y contraseña no deben estar vacíos",
+      });
 
     const userFound = await userServices.findOneByName(
       u_username.toUpperCase()
@@ -99,8 +101,6 @@ const userController = {
       u_firstname: u_firstname.toUpperCase(),
       u_lastname: u_lastname.toUpperCase(),
     };
-
-    console.log(newUser);
 
     const userStored = await userServices.store(newUser);
 

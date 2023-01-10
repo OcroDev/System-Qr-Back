@@ -42,8 +42,6 @@ const productController = {
       p_ubication: p_ubication.toUpperCase(),
     };
 
-    console.log(newProduct);
-
     const productStored = await productServices.store(newProduct);
 
     return res.status(201).json({

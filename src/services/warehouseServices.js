@@ -18,7 +18,7 @@ const warehouseServices = {
       });
       return werehouse;
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   },
   findOneById: (warehouseId) => {
