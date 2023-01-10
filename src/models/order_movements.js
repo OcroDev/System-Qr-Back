@@ -6,7 +6,7 @@ const ORDER_MOVEMENT = sequelize.define(
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     mov_quantity: { type: DataTypes.INTEGER, allowNull: false },
-    mov_note: { type: DataTypes.STRING, defaultValue: "" },
+    mov_note: { type: DataTypes.STRING(510), defaultValue: "" },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
     createdat: {
       type: DataTypes.STRING,

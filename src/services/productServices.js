@@ -70,7 +70,7 @@ const productServices = {
   findByMinStock: () => {
     try {
       const products = sequelize.query(
-        "select * from products where p_stock < p_minstock order by p_ubication desc",
+        "select * from products where p_stock <= p_minstock order by p_ubication desc",
         {
           type: sequelize.QueryTypes.SELECT,
         }
