@@ -14,8 +14,8 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./src/index.js",
-    "start": "node ./src/index.js"
+    "dev": "nodemon ./index.js",
+    "start": "node ./index.js"
   },
   "devDependencies": {
     "colors": "^1.4.0",
