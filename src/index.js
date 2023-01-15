@@ -74,3 +74,7 @@ app.use("/qrstock/api/orders", orderRouter);
 
 //orders
 app.use("/qrstock/api/ordermovements", orderMovementRouter);
+
+app.use("/", (req, res) => {
+  res.send({ hola: "vercel activado" });
+});
