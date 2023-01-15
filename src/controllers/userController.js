@@ -64,7 +64,8 @@ const userController = {
     }
   },
   store: async (req, res) => {
-    const { u_firstname, u_username, u_password, u_lastname } = req.body;
+    const { u_firstname, u_username, u_password, u_lastname, u_type } =
+      req.body;
 
     if (!u_firstname) {
       return res.status(400).json({
@@ -79,6 +80,13 @@ const userController = {
         status: 400,
         isStored: false,
         message: "el nombre de usuario y contraseña no puede estar vacío",
+      });
+    }
+    if (!u_type) {
+      return res.status(400).json({
+        status: 400,
+        isStored: false,
+        message: "el tipo de usurio no puede estar vacío",
       });
     }
 
@@ -100,6 +108,7 @@ const userController = {
       u_username: u_username.toUpperCase(),
       u_firstname: u_firstname.toUpperCase(),
       u_lastname: u_lastname.toUpperCase(),
+      u_type: u_type.toUpperCase(),
     };
 
     const userStored = await userServices.store(newUser);

@@ -24,7 +24,7 @@ const orderServices = {
   findAllReport: () => {
     try {
       return sequelize.query(
-        `select orders.id, orders.createdat as date, warehouses.w_description as warehouse_name, users.u_firstname as user_name, departments.d_name as department_name from orders inner join warehouses on warehouses.id = orders.warehouse_id inner join users on users.id = orders.user_id inner join departments on departments.id = orders.department_id where orders.isdeleted = false order by orders.id asc`,
+        `select orders.id, orders.createdat as date, warehouses.w_description as warehouse_name, users.u_firstname as user_name, departments.d_name as department_name from orders inner join warehouses on warehouses.id = orders.warehouse_id inner join users on users.id = orders.user_id inner join departments on departments.id = orders.department_id where orders.isdeleted = false order by orders.id desc`,
         {
           type: sequelize.QueryTypes.SELECT,
         }

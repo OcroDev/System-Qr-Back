@@ -12,6 +12,7 @@ const USER = sequelize.define(
     u_username: { type: DataTypes.STRING, unique: true, allowNull: false },
     u_password: { type: DataTypes.STRING, allowNull: false },
     u_admin: { type: DataTypes.BOOLEAN, defaultValue: false },
+    u_type: { type: DataTypes.STRING },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
     createdat: {
       type: DataTypes.STRING,
