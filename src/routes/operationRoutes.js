@@ -27,4 +27,10 @@ operationRouter.post("/in-id", operationController.findInOperationsById);
 // put delete OEPRATION
 operationRouter.put("/delete", operationController.deleteOperation);
 
+//post find all report by department
+operationRouter.post(
+  "/reports/bydepartment",
+  operationController.findOutOperationsByDepartment
+);
+
 export default operationRouter;

@@ -65,6 +65,19 @@ const operationServices = {
       console.log(error);
     }
   },
+  findOutOperationsByDepartment: (department, warehouse) => {
+    let operation;
+    try {
+      return (operation = sequelize.query(
+        `select operations.operation_type_id, operation_types.type, departments.d_name, warehouses.w_description, movements.operation_cod, movements.mov_quantity, movements.product_id, products.p_description from operations join operation_types on operation_types.id = operations.operation_type_id join departments on departments.id = operations.dep_in join warehouses on warehouses.id = operations.warehouse_in join movements on movements.operation_cod = operations.id join products on products.id = movements.product_id where departments.d_name = '${department}' and warehouses.w_description = '${warehouse}'`,
+        {
+          type: sequelize.QueryTypes.SELECT,
+        }
+      ));
+    } catch (error) {
+      console.log(error);
+    }
+  },
   countByType: (operation_type) => {
     try {
       return OPERATION.count({

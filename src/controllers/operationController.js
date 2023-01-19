@@ -53,6 +53,37 @@ const operationController = {
       operation: operationsOut,
     });
   },
+  findOutOperationsByDepartment: async (req, res) => {
+    const { department, warehouse } = req.body;
+
+    if (!department || !warehouse) {
+      res.status(400).json({
+        status: 400,
+        message: "El departamento o almacén no pueden estar vacíos",
+      });
+    }
+
+    console.log("departamento: ", department);
+    console.log("almacen: ", warehouse);
+
+    const operations = await operationServices.findOutOperationsByDepartment(
+      department,
+      warehouse
+    );
+
+    console.log(operations);
+    if (operations.length <= 0) {
+      res.status(200).json({
+        status: 200,
+        message: "No existen reportes con los datos introducidos",
+      });
+    }
+
+    return res.status(200).json({
+      status: 200,
+      operations,
+    });
+  },
   deleteOperation: async (req, res) => {
     const { id } = req.body;
 
