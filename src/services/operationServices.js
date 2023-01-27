@@ -15,7 +15,7 @@ const operationServices = {
     let operation;
     try {
       return (operation = sequelize.query(
-        `select operations.id, operations.operation_type_id, products.p_description, movements.mov_quantity, operation_types.type as operationType, operations.createdat as date from operations inner join movements on movements.operation_cod = operations.id inner join products on products.id = movements.product_id inner join operation_types on operation_types.id = movements.operation_type_id where operations.operation_type_id = 1 and operations.isdeleted=false order by operations.id DESC `,
+        `select operations.id, operations.operation_type_id, products.p_description, movements.mov_quantity, operation_types.type as operationType, operations.createdat as date  from operations inner join movements on movements.operation_cod = operations.id inner join products on products.id = movements.product_id inner join operation_types on operation_types.id = movements.operation_type_id where operations.operation_type_id = 1 and operations.isdeleted=false order by operations.id DESC `,
         {
           type: sequelize.QueryTypes.SELECT,
         }
@@ -28,7 +28,7 @@ const operationServices = {
     let operation;
     try {
       return (operation = sequelize.query(
-        "select operations.id, operations.operation_type_id, warehouses.w_description as warehouse_in, departments.d_name as dep_in, products.p_description, movements.mov_quantity, operation_types.type as operationType, operations.createdat as date from operations inner join movements on movements.operation_cod = operations.id inner join warehouses on warehouses.id = operations.warehouse_in inner join departments on departments.id = operations.dep_in inner join products on products.id = movements.product_id inner join operation_types on operation_types.id = movements.operation_type_id where operations.operation_type_id = 2 and operations.isdeleted=false order by operations.id DESC",
+        `select operations.id, operations.operation_type_id, warehouses.w_description as warehouse_in, departments.d_name as dep_in, products.p_description, movements.mov_quantity, operation_types.type as operationType, operations.createdat as date, operations.op_status from operations inner join movements on movements.operation_cod = operations.id inner join warehouses on warehouses.id = operations.warehouse_in inner join departments on departments.id = operations.dep_in inner join products on products.id = movements.product_id inner join operation_types on operation_types.id = movements.operation_type_id where operations.operation_type_id = 2 and operations.isdeleted=false order by operations.id DESC`,
 
         {
           type: sequelize.QueryTypes.SELECT,

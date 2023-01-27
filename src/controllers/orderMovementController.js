@@ -13,7 +13,7 @@ const orderMovementController = {
     if (!product_id || !mov_quantity) {
       return res.status(400).json({
         status: 400,
-        message: "El id del producto y la cantidad no pueden estar vacíos",
+        message: "El id del material y la cantidad no pueden estar vacíos",
       });
     }
 

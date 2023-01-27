@@ -8,7 +8,7 @@ const movementController = {
       return res.status(400).json({
         status: 400,
         message:
-          "El id del producto, el tipo de operación, y la cantidad no pueden estar vacíos",
+          "El id del material, el tipo de operación, y la cantidad no pueden estar vacíos",
       });
     }
 

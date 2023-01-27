@@ -59,12 +59,9 @@ const operationController = {
     if (!department || !warehouse) {
       res.status(400).json({
         status: 400,
-        message: "El departamento o almacén no pueden estar vacíos",
+        message: "El departamento o colegio no pueden estar vacíos",
       });
     }
-
-    console.log("departamento: ", department);
-    console.log("almacen: ", warehouse);
 
     const operations = await operationServices.findOutOperationsByDepartment(
       department,

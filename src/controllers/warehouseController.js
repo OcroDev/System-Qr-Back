@@ -39,7 +39,7 @@ const warehouseController = {
       return res.status(400).json({
         status: 400,
         isStored: false,
-        message: "El nombre del almacen no puede estar vacío",
+        message: "El nombre del colegio no puede estar vacío",
       });
     }
 
@@ -57,7 +57,7 @@ const warehouseController = {
         status: 400,
         isStored: false,
         warehouseFound: true,
-        message: `El almacen '${w_description}' ya se encuentra registrado en la base de datos`,
+        message: `El colegio '${w_description}' ya se encuentra registrado en la base de datos`,
       });
     }
     const warehouseUpdate = await warehouseServices.update(id, warehouse);
@@ -65,7 +65,7 @@ const warehouseController = {
     return res.status(200).json({
       status: 201,
       isUpdated: true,
-      message: "El almacen fue actualizado",
+      message: "El colegio fue actualizado",
       warehouse: warehouseUpdate,
     });
   },
@@ -76,7 +76,7 @@ const warehouseController = {
       return res.status(400).json({
         status: 400,
         isStored: false,
-        message: "El nombre del almacén no puede estar vacío",
+        message: "El nombre del colegio no puede estar vacío",
       });
     }
 
@@ -88,7 +88,7 @@ const warehouseController = {
         status: 400,
         isStored: false,
         warehouseFound: true,
-        message: `El almacén '${w_description}' ya se encuentra registrado en la base de datos`,
+        message: `El colegio '${w_description}' ya se encuentra registrado en la base de datos`,
       });
     }
 
@@ -102,7 +102,7 @@ const warehouseController = {
     return res.status(201).json({
       status: 201,
       isStored: true,
-      message: "el almacén fue agregado satisfactoriamente",
+      message: "el colegios fue agregado satisfactoriamente",
       warehouse: warehouseStored,
     });
   },
@@ -123,7 +123,7 @@ const warehouseController = {
       status: 200,
       isDeleted: true,
       product: warehouseDeleted,
-      message: "El almacén fue eliminado",
+      message: "El colegio fue eliminado",
     });
   },
 };

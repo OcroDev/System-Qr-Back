@@ -18,7 +18,7 @@ const productController = {
       return res.status(400).json({
         status: 400,
         isStored: false,
-        message: "El nombre y la ubicación del producto no pueden estar vacíos",
+        message: "El nombre y la ubicación del material no pueden estar vacíos",
       });
     }
 
@@ -31,7 +31,7 @@ const productController = {
         status: 400,
         isStored: false,
         productFound: true,
-        message: `El producto '${p_description}' ya se encuentra registrado en la base de datos`,
+        message: `El material '${p_description}' ya se encuentra registrado en la base de datos`,
       });
     }
 
@@ -47,7 +47,7 @@ const productController = {
     return res.status(201).json({
       status: 201,
       isStored: true,
-      message: "El producto fue creado satisfactoriamente",
+      message: "El material fue creado satisfactoriamente",
       product: productStored,
     });
   },
@@ -117,7 +117,7 @@ const productController = {
       return res.status(400).json({
         status: 400,
         isStored: false,
-        message: "El nombre y la ubicación del producto no pueden estar vacíos",
+        message: "El nombre y la ubicación del material no pueden estar vacíos",
       });
     }
 
@@ -133,7 +133,7 @@ const productController = {
     return res.status(200).json({
       status: 201,
       isUpdated: true,
-      message: "El producto fue actualizado",
+      message: "El material fue actualizado",
       product: productUpdate,
     });
   },
@@ -154,7 +154,7 @@ const productController = {
       status: 200,
       isDeleted: true,
       product: productDeleted,
-      message: "El producto fue eliminado",
+      message: "El material fue eliminado",
     });
   },
   updateStock: async (req, res) => {
@@ -168,7 +168,7 @@ const productController = {
     if (!productFind) {
       return res.status(404).json({
         status: 404,
-        message: "No se pudo encontrar el producto",
+        message: "No se pudo encontrar el material",
       });
     }
     let stock = parseInt(productFind.p_stock) + parseInt(p_stock);
@@ -177,7 +177,7 @@ const productController = {
 
     return res.status(200).json({
       status: 200,
-      message: "stock del producto actualizado",
+      message: "stock del material actualizado",
       product: productUpdate,
     });
   },
