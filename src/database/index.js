@@ -1,18 +1,16 @@
 import Sequelize from "sequelize";
+import * as dotenv from "dotenv";
 
-const sequelize = new Sequelize(
-  process.env.DATABASE,
-  process.env.USERNAME,
-  process.env.PASSWORD,
-  {
-    host: process.env.HOST,
-    dialect: process.env.DIALECT,
-  }
-);
+dotenv.config();
+const PASSWORD = process.env.PASSWORD;
+const USERNAME = process.env.USER;
+const DIALECT = process.env.DIALECT;
+const HOST = process.env.HOST;
+const DATABASE = process.env.DATABASE;
 
-// const sequelize = new Sequelize("postgres", "postgres", "Ro33921335*", {
-//   host: "db.oriqnytbmffklndrozrr.supabase.co",
-//   dialect: "postgres",
-// });
+const sequelize = new Sequelize(DATABASE, USERNAME, PASSWORD, {
+  host: HOST,
+  dialect: DIALECT,
+});
 
 export default sequelize;
