@@ -111,6 +111,16 @@ const operationServices = {
       console.log(error);
     }
   },
+  statusUpdate: (operationId) => {
+    try {
+      return OPERATION.update(
+        { op_status: true },
+        { where: { id: operationId } }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 export default operationServices;

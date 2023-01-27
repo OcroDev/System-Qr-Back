@@ -152,6 +152,29 @@ const operationController = {
       operation: operationStored,
     });
   },
+  statusUpdate: async (req, res) => {
+    const { id } = req.body;
+    if (!id) {
+      return res.status(400).json({
+        status: 400,
+        message: "el id no puede estar vacío",
+      });
+    }
+
+    const operationUpdated = await operationServices.statusUpdate(id);
+
+    if (operationUpdated.length <= 0) {
+      return res.status(500).json({
+        status: 500,
+        message: "no se pudo actualizar la operación",
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      message: "Materiales recibidos",
+      operationUpdated,
+    });
+  },
 };
 
 export default operationController;

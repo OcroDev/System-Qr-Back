@@ -27,6 +27,9 @@ operationRouter.post("/in-id", operationController.findInOperationsById);
 // put delete OEPRATION
 operationRouter.put("/delete", operationController.deleteOperation);
 
+//put operation status
+operationRouter.put("/status", operationController.statusUpdate);
+
 //post find all report by department
 operationRouter.post(
   "/reports/bydepartment",

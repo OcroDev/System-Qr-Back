@@ -10,7 +10,7 @@ const OPERATION = sequelize.define(
       type: DataTypes.STRING,
       defaultValue: "LIC. GABRIELA CEDOLIN",
     },
-    op_status: { type: DataTypes.BOOLEAN },
+    op_status: { type: DataTypes.BOOLEAN, default: false },
     isdeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
     createdat: {
       type: DataTypes.STRING,
