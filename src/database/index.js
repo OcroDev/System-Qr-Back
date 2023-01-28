@@ -4,13 +4,12 @@ import * as dotenv from "dotenv";
 dotenv.config();
 const PASSWORD = process.env.PASSWORD;
 const USERNAME = process.env.USER;
-const DIALECT = process.env.DIALECT;
 const HOST = process.env.HOST;
 const DATABASE = process.env.DATABASE;
 
 const sequelize = new Sequelize(DATABASE, USERNAME, PASSWORD, {
   host: HOST,
-  dialect: DIALECT,
+  dialect: "postgres",
 });
 
 export default sequelize;
